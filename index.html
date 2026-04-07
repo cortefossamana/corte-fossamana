@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="B&B Corte Fossamana - Antica corte gonzaghesca del 1500 a Mantova. Camere eleganti con soffitti a cassettoni, atmosfera familiare e posizione strategica.">
+    <title>B&B Corte Fossamana - Mantova</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --background-light: #eff6ff;
+            --white: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* ── Language Toggle ── */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .lang-label {
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            opacity: 0.9;
+            min-width: 22px;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+
+        .lang-label.active {
+            opacity: 1;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: rgba(255,255,255,0.25);
+            border-radius: 24px;
+            transition: background 0.3s;
+            border: 1.5px solid rgba(255,255,255,0.45);
+        }
+
+        .slider::before {
+            content: "";
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .switch input:checked + .slider {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .switch input:checked + .slider::before {
+            transform: translateY(-50%) translateX(22px);
+        }
+
+        /* ── Header & Nav ── */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--background-light);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            height: 600px;
+            background: linear-gradient(rgba(30, 58, 138, 0.4), rgba(37, 99, 235, 0.3)),
+                        url('images/cover.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+        }
+
+        /* ── Sections ── */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        /* ── About ── */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--background-light) 0%, #dbeafe 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            border: 2px solid var(--accent-color);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* ── Rooms ── */
+        #camere {
+            background: var(--background-light);
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .room-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .room-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .room-info {
+            padding: 1.5rem;
+        }
+
+        .room-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .room-info p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        /* ── Services ── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── Location ── */
+        #location {
+            background: var(--background-light);
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .map-placeholder iframe {
+            border-radius: 10px;
+        }
+
+        .directions h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .directions p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* ── Contact ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: var(--background-light);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .contact-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p, .contact-item a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* ── Form ── */
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group button[type="submit"] {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: background 0.3s;
+        }
+
+        .form-group button[type="submit"]:hover {
+            background: var(--primary-color);
+        }
+
+        .form-group button[type="submit"]:disabled {
+            background: var(--accent-color);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+            display: block;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--background-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            color: var(--background-light);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .rooms-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .lang-toggle {
+                margin-left: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* hide/show language content */
+        .lang-it, .lang-en {
+            transition: opacity 0.2s;
+        }
+
+        body.en .lang-it { display: none; }
+        body.en .lang-en { display: block; }
+        body:not(.en) .lang-it { display: block; }
+        body:not(.en) .lang-en { display: none; }
+
+        /* inline elements need inline, not block */
+        span.lang-it, span.lang-en,
+        a.lang-it, a.lang-en,
+        li.lang-it, li.lang-en {
+            display: inline !important;
+        }
+        body.en span.lang-it,
+        body.en a.lang-it,
+        body.en li.lang-it { display: none !important; }
+        body:not(.en) span.lang-en,
+        body:not(.en) a.lang-en,
+        body:not(.en) li.lang-en { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════ HEADER ══════════════ -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">Corte Fossamana</a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li class="lang-it"><a href="#chi-siamo">Chi Siamo</a></li>
+                <li class="lang-en"><a href="#chi-siamo">About Us</a></li>
+                <li class="lang-it"><a href="#camere">Camere</a></li>
+                <li class="lang-en"><a href="#camere">Rooms</a></li>
+                <li class="lang-it"><a href="#servizi">Servizi</a></li>
+                <li class="lang-en"><a href="#servizi">Services</a></li>
+                <li class="lang-it"><a href="#location">Come Raggiungerci</a></li>
+                <li class="lang-en"><a href="#location">How to Reach Us</a></li>
+                <li class="lang-it"><a href="#contatti">Contatti</a></li>
+                <li class="lang-en"><a href="#contatti">Contact</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <!-- Language toggle -->
+                <div class="lang-toggle" title="Switch language / Cambia lingua">
+                    <span class="lang-label" id="lblIT" style="opacity:1;text-decoration:underline;text-underline-offset:3px;">IT</span>
+                    <label class="switch">
+                        <input type="checkbox" id="langSwitch" onchange="toggleLang(this)">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="lang-label" id="lblEN">EN</span>
+                </div>
+
+                <div class="mobile-menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div>
+                <h1>B&amp;B Corte Fossamana</h1>
+                <p>&nbsp;</p>
+                <a href="#contatti" class="btn lang-it">Prenota ora</a>
+                <a href="#contatti" class="btn lang-en">Book now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ CHI SIAMO / ABOUT ══════════════ -->
+    <section id="chi-siamo">
+        <div class="container">
+            <h2 class="lang-it">Chi Siamo</h2>
+            <h2 class="lang-en">About Us</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/sketch.jpg" alt="Corte Fossamana - Vista esterna">
+                </div>
+                <div class="about-text">
+                    <!-- ITALIANO -->
+                    <div class="lang-it">
+                        <p>Il Bed &amp; Breakfast Corte Fossamana è un'antica dimora del 1500, probabilmente legata alle storiche residenze dei Gonzaga, situata nella tranquilla campagna mantovana a soli 4 km dal centro storico. Immergetevi nel verde e nella pace, raggiungendo Mantova in 10 minuti e il PalaUnical in pochi minuti.</p>
+                        <p>La struttura si distingue per le ampie stanze con eleganti soffitti a cassettoni in legno. Al piano terra l'accogliente sala colazione, al primo piano le tre camere degli ospiti raggiungibili tramite un'elegante scala in marmo. Fiore all'occhiello è la cappella di famiglia, testimonianza storica ancora utilizzata per funzioni religiose private.</p>
+                        <p>I proprietari, che abitano in una casa adiacente, garantiscono massima privacy pur rimanendo sempre disponibili per ogni necessità. Che veniate per visitare la città, per eventi culturali, per godere delle bellezze naturali o per lavoro, il nostro obiettivo è assicurarvi un soggiorno indimenticabile.</p>
+                    </div>
+                    <!-- ENGLISH -->
+                    <div class="lang-en">
+                        <p>Bed &amp; Breakfast Corte Fossamana is a historic 16th-century residence, believed to be linked to the storied Gonzaga estates, nestled in the peaceful Mantuan countryside just 4 km from the historic city centre. Immerse yourself in nature and tranquillity, with Mantua reachable in 10 minutes and the PalaUnical arena only a short drive away.</p>
+                        <p>The property is distinguished by its spacious rooms with elegant original coffered wooden ceilings. On the ground floor is the welcoming breakfast room; on the first floor, three guest rooms accessed via a graceful marble staircase. The crown jewel is the family chapel — a living piece of history still used for private religious ceremonies.</p>
+                        <p>The owners, who live in an adjacent home, ensure complete privacy while remaining on hand for any need. Whether you come to explore the city, attend cultural events, enjoy the natural landscape, or for business, our goal is to make your stay truly unforgettable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ CAMERE / ROOMS ══════════════ -->
+    <section id="camere">
+        <div class="container">
+            <h2 class="lang-it">Le Nostre Camere</h2>
+            <h2 class="lang-en">Our Rooms</h2>
+
+            <p class="lang-it" style="text-align:center;color:var(--text-light);margin-bottom:3rem;">
+                In un'attenta opera di restauro conservativo, abbiamo preservato l'autenticità di questa dimora storica, mantenendo le ampie camere matrimoniali originali. Ogni camera può ospitare un comodo letto singolo aggiuntivo su richiesta, con bagno privato adiacente.
+            </p>
+            <p class="lang-en" style="text-align:center;color:var(--text-light);margin-bottom:3rem;">
+                Through careful conservation restoration, we have preserved the authenticity of this historic residence, keeping the original spacious double rooms intact. Each room can accommodate an additional single bed on request, with an adjacent private bathroom.
+            </p>
+
+            <div class="rooms-grid">
+                <!-- Stanza dei Nonni -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="images/nonni.jpg" alt="Stanza dei Nonni">
+                    </div>
+                    <div class="room-info">
+                        <h3 class="lang-it">Stanza dei Nonni</h3>
+                        <h3 class="lang-en">The Grandparents' Room</h3>
+                        <p class="lang-it">Un tempo dimora dei nonni di famiglia, conserva gli arredi d'epoca originali e il magnifico soffitto in legno a cassettoni dipinto a mano.</p>
+                        <p class="lang-en">Once the living quarters of the family's grandparents, this room retains its original period furnishings and a magnificent hand-painted wooden coffered ceiling.</p>
+                    </div>
+                </div>
+
+                <!-- Stanza di Ilaria -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="images/ilaria.jpg" alt="Stanza di Ilaria">
+                    </div>
+                    <div class="room-info">
+                        <h3 class="lang-it">Stanza di Ilaria</h3>
+                        <h3 class="lang-en">Ilaria's Room</h3>
+                        <p class="lang-it">Originariamente la camera estiva della nipotina di famiglia, oggi trasformata in un'elegante camera matrimoniale con vista panoramica sulla suggestiva campagna mantovana.</p>
+                        <p class="lang-en">Originally the family granddaughter's summer room, now transformed into an elegant double room with a sweeping panoramic view over the enchanting Mantuan countryside.</p>
+                    </div>
+                </div>
+
+                <!-- Stanza dello Zio -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="images/zio.jpg" alt="Stanza dello Zio">
+                    </div>
+                    <div class="room-info">
+                        <h3 class="lang-it">Stanza dello Zio</h3>
+                        <h3 class="lang-en">The Uncle's Room</h3>
+                        <p class="lang-it">Spaziosa camera matrimoniale che un tempo apparteneva agli zii di famiglia, conserva il fascino e l'eleganza dell'epoca.</p>
+                        <p class="lang-en">A spacious double room that once belonged to the family's uncle. It retains all the charm and elegance of the era.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="lang-it" style="text-align:center;margin-top:2rem;color:var(--text-light);font-weight:bold;">I bambini fino a sei anni non pagano.</p>
+            <p class="lang-en" style="text-align:center;margin-top:2rem;color:var(--text-light);font-weight:bold;">Children up to six years of age stay free of charge.</p>
+        </div>
+    </section>
+
+    <!-- ══════════════ SERVIZI / SERVICES ══════════════ -->
+    <section id="servizi">
+        <div class="container">
+            <h2 class="lang-it">I Nostri Servizi</h2>
+            <h2 class="lang-en">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">🏛️</div>
+                    <h3 class="lang-it">Dimora Storica</h3>
+                    <h3 class="lang-en">Historic Residence</h3>
+                    <p class="lang-it">Soffitti a cassettoni originali del 1500</p>
+                    <p class="lang-en">Original 16th-century coffered ceilings</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🍳</div>
+                    <h3 class="lang-it">Colazione Inclusa</h3>
+                    <h3 class="lang-en">Breakfast Included</h3>
+                    <p class="lang-it">Ricca colazione ogni mattina</p>
+                    <p class="lang-en">A generous breakfast every morning</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🐱</div>
+                    <h3 class="lang-it">Amici a Quattro Zampe</h3>
+                    <h3 class="lang-en">Four-Legged Friends</h3>
+                    <p class="lang-it">Gatti e cavalli in proprietà per un'esperienza autentica</p>
+                    <p class="lang-en">Cats and horses on the property for an authentic experience</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🎉</div>
+                    <h3 class="lang-it">Eventi e Cerimonie</h3>
+                    <h3 class="lang-en">Events &amp; Ceremonies</h3>
+                    <p class="lang-it">Spazi per feste, matrimoni e celebrazioni</p>
+                    <p class="lang-en">Spaces for parties, weddings and celebrations</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🚗</div>
+                    <h3 class="lang-it">Parcheggio Gratuito</h3>
+                    <h3 class="lang-en">Free Parking</h3>
+                    <p class="lang-it">Ampio parcheggio privato</p>
+                    <p class="lang-en">Spacious private parking</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📶</div>
+                    <h3 class="lang-it">Wi-Fi Gratuito</h3>
+                    <h3 class="lang-en">Free Wi-Fi</h3>
+                    <p class="lang-it">Connessione internet in tutta la struttura</p>
+                    <p class="lang-en">Internet connection throughout the property</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🌳</div>
+                    <h3 class="lang-it">Giardino Privato</h3>
+                    <h3 class="lang-en">Private Garden</h3>
+                    <p class="lang-it">Immerso nella natura mantovana</p>
+                    <p class="lang-en">Nestled in the Mantuan countryside</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">⛪</div>
+                    <h3 class="lang-it">Cappella Storica</h3>
+                    <h3 class="lang-en">Historic Chapel</h3>
+                    <p class="lang-it">Cappella di famiglia visitabile</p>
+                    <p class="lang-en">Family chapel open to visitors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ COME RAGGIUNGERCI / HOW TO REACH US ══════════════ -->
+    <section id="location">
+        <div class="container">
+            <h2 class="lang-it">Come Raggiungerci</h2>
+            <h2 class="lang-en">How to Reach Us</h2>
+            <div class="location-content">
+                <div class="map-placeholder">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2818.8576892547844!2d10.850658076542436!3d45.13890577107446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4781e1e1e1e1e1e1%3A0x1e1e1e1e1e1e1e1e!2sVia%20Fossamana%2C%201%2C%2046030%20San%20Giorgio%20Bigarello%20MN!5e0!3m2!1sit!2sit!4v1234567890123!5m2!1sit!2sit"
+                        width="100%"
+                        height="400"
+                        style="border:0;border-radius:10px;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="directions">
+                    <!-- ITALIANO -->
+                    <div class="lang-it">
+                        <h3>🚗 In Auto</h3>
+                        <p>Da Autostrada A22 Modena-Brennero: uscita Mantova Nord, seguire le indicazioni per Mantova. Al semaforo svoltare a destra in Via Marconi, proseguire fino in fondo e svoltare nuovamente a destra in Via Ghisiolo. Continuare fino al semaforo pedonale, poi svoltare a sinistra in Via Folengo percorrendola per intero. Al termine svoltare a sinistra in Via Fossamana e imboccare il secondo ponte sulla destra.</p>
+                        <h3>🚌 Con Mezzi Pubblici</h3>
+                        <p>Dalla stazione ferroviaria di Mantova, prendere l'autobus linea 4T Tripoli (APAM) alla fermata "DON LEONI - P.za Don Leoni 20/21 (FS)". Scendere alla fermata "FOLENGO - Via Folengo, 12/14 Tripoli". Da qui la struttura è raggiungibile a piedi in pochi minuti.</p>
+                    </div>
+                    <!-- ENGLISH -->
+                    <div class="lang-en">
+                        <h3>🚗 By Car</h3>
+                        <p>From the A22 Modena–Brennero motorway: exit at Mantova Nord and follow signs for Mantova. At the traffic lights, turn right onto Via Marconi, continue to the end and turn right again onto Via Ghisiolo. Continue to the pedestrian traffic light, then turn left onto Via Folengo and follow it to the end. Turn left onto Via Fossamana and take the second bridge on the right.</p>
+                        <h3>🚌 By Public Transport</h3>
+                        <p>From Mantova railway station, take bus line 4T Tripoli (APAM) from the stop "DON LEONI - P.za Don Leoni 20/21 (FS)". Alight at stop "FOLENGO - Via Folengo, 12/14 Tripoli". From there, the property is a few minutes' walk away.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ CONTATTI / CONTACT ══════════════ -->
+    <section id="contatti">
+        <div class="container">
+            <h2 class="lang-it">Contattaci</h2>
+            <h2 class="lang-en">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <a href="mailto:cortefossamana@gmail.com">cortefossamana@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📞 <span class="lang-it">Telefono</span><span class="lang-en">Phone</span></h3>
+                        <a href="tel:+393409126500">340 9126500</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📍 <span class="lang-it">Indirizzo</span><span class="lang-en">Address</span></h3>
+                        <p>Via Fossamana, 1<br>46030 San Giorgio Bigarello (MN)<br><span class="lang-it">Italia</span><span class="lang-en">Italy</span></p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 class="lang-it">Inviaci un messaggio</h3>
+                    <h3 class="lang-en">Send us a message</h3>
+                    <div id="formMessage" class="form-message" role="alert"></div>
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">
+                                <span class="lang-it">Nome e Cognome *</span>
+                                <span class="lang-en">Full Name *</span>
+                            </label>
+                            <input type="text" id="name" name="name" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">
+                                <span class="lang-it">Telefono</span>
+                                <span class="lang-en">Phone</span>
+                            </label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel">
+                        </div>
+                        <div class="form-group">
+                            <label for="dates">
+                                <span class="lang-it">Date Soggiorno</span>
+                                <span class="lang-en">Stay Dates</span>
+                            </label>
+                            <input type="text" id="dates" name="dates"
+                                   class="lang-placeholder-it"
+                                   placeholder="Es. dal 10/01 al 15/01">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">
+                                <span class="lang-it">Messaggio *</span>
+                                <span class="lang-en">Message *</span>
+                            </label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="submitBtn">
+                                <span class="lang-it">Invia Messaggio</span>
+                                <span class="lang-en">Send Message</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ FOOTER ══════════════ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>B&amp;B Corte Fossamana</h3>
+                <p class="lang-it">Una dimora storica gonzaghesca del 1500 immersa nella campagna mantovana</p>
+                <p class="lang-en">A historic 16th-century Gonzaga residence nestled in the Mantuan countryside</p>
+            </div>
+            <div class="footer-section">
+                <h3><span class="lang-it">Contatti</span><span class="lang-en">Contact</span></h3>
+                <p>📧 <a href="mailto:cortefossamana@gmail.com">cortefossamana@gmail.com</a></p>
+                <p>📞 <a href="tel:+393409126500">340 9126500</a></p>
+            </div>
+            <div class="footer-section">
+                <h3><span class="lang-it">Dove Siamo</span><span class="lang-en">Where We Are</span></h3>
+                <p>Via Fossamana, 1</p>
+                <p>46030 San Giorgio Bigarello (MN)</p>
+                <p><span class="lang-it">Italia</span><span class="lang-en">Italy</span></p>
+            </div>
+            <div class="footer-section">
+                <h3><span class="lang-it">Orari</span><span class="lang-en">Hours</span></h3>
+                <p class="lang-it">Check-in: dalle 14:00</p>
+                <p class="lang-en">Check-in: from 2:00 PM</p>
+                <p class="lang-it">Check-out: entro le 11:00</p>
+                <p class="lang-en">Check-out: by 11:00 AM</p>
+                <p class="lang-it">Reception: su appuntamento</p>
+                <p class="lang-en">Reception: by appointment</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="lang-it">&copy; 2026 B&amp;B Corte Fossamana</p>
+            <p class="lang-en">&copy; 2026 B&amp;B Corte Fossamana</p>
+        </div>
+    </footer>
+
+    <!-- ══════════════ SCRIPTS ══════════════ -->
+    <script>
+        /* ── Mobile menu ── */
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        /* ── Language toggle ── */
+        function toggleLang(checkbox) {
+            const body = document.body;
+            const lblIT = document.getElementById('lblIT');
+            const lblEN = document.getElementById('lblEN');
+
+            if (checkbox.checked) {
+                body.classList.add('en');
+                document.documentElement.lang = 'en';
+                lblIT.style.opacity = '0.55';
+                lblIT.style.textDecoration = 'none';
+                lblEN.style.opacity = '1';
+                lblEN.style.textDecoration = 'underline';
+                lblEN.style.textUnderlineOffset = '3px';
+                // update placeholder
+                document.getElementById('dates').placeholder = 'e.g. from 10/01 to 15/01';
+                document.getElementById('submitBtn').setAttribute('aria-label', 'Send Message');
+            } else {
+                body.classList.remove('en');
+                document.documentElement.lang = 'it';
+                lblEN.style.opacity = '0.55';
+                lblEN.style.textDecoration = 'none';
+                lblIT.style.opacity = '1';
+                lblIT.style.textDecoration = 'underline';
+                lblIT.style.textUnderlineOffset = '3px';
+                document.getElementById('dates').placeholder = 'Es. dal 10/01 al 15/01';
+            }
+        }
+
+        /* ── Contact form — mailto fallback ── */
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const isEn = document.body.classList.contains('en');
+            const msgEl = document.getElementById('formMessage');
+            const btn = document.getElementById('submitBtn');
+
+            // Basic validation
+            const name    = document.getElementById('name').value.trim();
+            const email   = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name || !email || !message) {
+                showMsg(msgEl, 'error',
+                    isEn ? 'Please fill in all required fields (*).'
+                         : 'Per favore compila tutti i campi obbligatori (*).');
+                return;
+            }
+            if (!emailRx.test(email)) {
+                showMsg(msgEl, 'error',
+                    isEn ? 'Please enter a valid email address.'
+                         : 'Inserisci un indirizzo email valido.');
+                return;
+            }
+
+            // Build mailto
+            const phone  = document.getElementById('phone').value.trim();
+            const dates  = document.getElementById('dates').value.trim();
+
+            const subject = encodeURIComponent(
+                isEn ? `Enquiry from ${name} - B&B Corte Fossamana`
+                     : `Richiesta da ${name} - B&B Corte Fossamana`
+            );
+
+            let body = isEn
+                ? `Name: ${name}\nEmail: ${email}`
+                : `Nome: ${name}\nEmail: ${email}`;
+            if (phone)  body += isEn ? `\nPhone: ${phone}` : `\nTelefono: ${phone}`;
+            if (dates)  body += isEn ? `\nStay dates: ${dates}` : `\nDate soggiorno: ${dates}`;
+            body += isEn ? `\n\nMessage:\n${message}` : `\n\nMessaggio:\n${message}`;
+
+            const mailtoUrl = `mailto:cortefossamana@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+
+            // Open mail client
+            window.location.href = mailtoUrl;
+
+            // Show success message
+            showMsg(msgEl, 'success',
+                isEn ? '✓ Your email client is opening. Please send the pre-filled email to complete your enquiry.'
+                     : '✓ Si sta aprendo il tuo client email. Invia l\'email precompilata per completare la richiesta.');
+
+            // Optionally reset after brief delay
+            setTimeout(() => {
+                document.getElementById('contactForm').reset();
+            }, 1500);
+        });
+
+        function showMsg(el, type, text) {
+            el.className = 'form-message ' + type;
+            el.textContent = text;
+            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
